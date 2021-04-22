@@ -1,1 +1,6 @@
-<p>category works!</p>
+<!-- <ul class="list-group">
+    <li *ngFor="let category of categories" class="list-group-item">{{category.categoryId}} {{category.categoryName}}</li>
+  </ul> -->
+<ul *ngFor="let category of categories" class="list-group">
+    <li class="list-group-item">{{category.categoryName}}</li>
+  </ul>

@@ -9,6 +9,7 @@ import { Category } from 'src/app/models/category';
 })
 export class CategoryComponent implements OnInit {
   categories: Category[] = [];
+  currentCategory: Category | null;
 
   constructor(private categoryService: CategoryService) {}
 
@@ -20,5 +21,31 @@ export class CategoryComponent implements OnInit {
     this.categoryService.getCategories().subscribe((response) => {
       this.categories = response.data;
     });
+  }
+
+  setCurrentCategory(category: Category) {
+    this.currentCategory = category;
+    console.log(this.currentCategory);
+  }
+
+  resetCurrentCategory() {
+    this.currentCategory = null;
+    console.log(this.currentCategory);
+  }
+
+  getCurrentCategoryClass(category: Category) {
+    if (category == this.currentCategory) {
+      return 'list-group-item active';
+    } else {
+      return 'list-group-item';
+    }
+  }
+
+  getAllCategoryClass() {
+    if (!this.currentCategory) {
+      return 'list-group-item active';
+    } else {
+      return 'list-group-item';
+    }
   }
 }

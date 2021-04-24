@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
 import { CategoryComponent } from './components/category/category.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { VatAddedPipe } from './pipes/vat-added.pipe';
 
 @NgModule({
   declarations: [
@@ -15,8 +16,13 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     ProductComponent,
     CategoryComponent,
     NavigationComponent,
+    VatAddedPipe,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule, 
+    AppRoutingModule, 
+    HttpClientModule
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

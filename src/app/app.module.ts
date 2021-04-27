@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,8 @@ import { ProductService } from './services/product.service';
 import { CartService } from './services/cart.service';
 import { CategoryService } from './services/category.service';
 import { ProductAddComponent } from './components/product-add/product-add.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { ProductAddComponent } from './components/product-add/product-add.compon
     FilterPipePipe,
     CartSummaryComponent,
     ProductAddComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule, 
@@ -43,9 +46,7 @@ import { ProductAddComponent } from './components/product-add/product-add.compon
     })
   ],
   providers: [
-    ProductService,
-    CategoryService,
-    CartService
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
 })
